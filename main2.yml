@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  become: yes
+  become_method: sudo
+
+  tasks:
+
+  - name: Clone Git repo into local dir
+    git:
+      repo: https://github.com/urraka10/rhassignment
+      dest: /home/ec2-user/uri/base/roles/test/files/.

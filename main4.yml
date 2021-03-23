@@ -1,0 +1,11 @@
+---
+- hosts: workers
+  become: yes
+  become_method: sudo
+
+  tasks:
+  - name: Running container
+    docker_container:
+      name: flask
+      image: urraka/flask
+      state: started

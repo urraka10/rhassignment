@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  become: yes
+  become_method: sudo
+
+  tasks:
+
+  - name: Docker login
+    docker_login:
+      username: urraka
+      password: RiverPlate08!
+      email: urraka@gmail.com
+
+  - name: build container image
+    community.docker.docker_image:
+      build:
+        path: /home/ec2-user/uri/base/roles/test/files/
+      name: flask
+      tag: v4
+      repository: urraka/rhassignment:flask
+      push: yes
+      source: build

@@ -1,0 +1,23 @@
+---
+- hosts: HA_Proxy 
+  become: yes
+
+  tasks:
+    - name: install haproxy
+      yum: name=haproxy state=present
+      tags: haproxy
+
+    - name: configure haproxy
+      template: src=haproxy.cfg dest=/etc/haproxy/haproxy.cfg
+#      notify: reload haproxy
+      tags: haproxy
+
+    - name: start haproxy
+      service: name=haproxy state=started
+      tags: haproxy
+
+#    - name: permit traffic on port 5000/tcp
+#      firewalld:
+#        port: 5000/tcp
+#        permanent: yes
+#        state: enabled

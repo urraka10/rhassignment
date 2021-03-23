@@ -1,0 +1,8 @@
+[workers]
+#172.31.17.95	 ansible_connection=ssh        ansible_user=centos
+#172.31.30.193
+#172.31.23.226
+172.31.30.16
+
+[HA_Proxy]
+172.31.18.219

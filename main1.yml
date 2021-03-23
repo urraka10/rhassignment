@@ -1,0 +1,27 @@
+---
+- hosts: workers
+  become: yes
+  become_method: sudo
+
+  tasks:
+
+    - name: Prepare docker Instalation
+      shell: sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+
+    - name: Docker installation
+      shell: sudo dnf install --nobest docker-ce -y
+
+    - name: Python package installation
+      shell: sudo dnf install python3-pip -y
+
+    - name: Docker-py installation
+      shell: sudo pip3 install docker-py
+
+    - name: Adding ec2-user to docker group
+      shell: sudo usermod -a -G docker ec2-user
+
+    - name: start and enable docker
+      service:
+        name: docker
+        state: started
+        enabled: true
